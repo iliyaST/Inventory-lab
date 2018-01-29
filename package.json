@@ -1,0 +1,17 @@
+{
+  "name": "onsenui-v2-react-minimum",
+  "version": "2.4.0+20171206.1",
+  "description": "",
+  "dependencies": {
+    "cordova-android": "^7.0.0",
+    "onsenui": "~2.8.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-onsenui": "~1.9.0"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  }
+}
