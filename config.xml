@@ -5,6 +5,7 @@
     <author />
     <access origin="*" />
     <content src="index.html" />
+    <access origin="*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="AndroidLaunchMode" value="singleTop" />
     <preference name="BackgroundColor" value="0xffffffff" />
@@ -98,5 +99,7 @@
     <platform name="chrome">
         <icon height="128" src="/platforms/chrome/icon.png" width="128" />
     </platform>
+    <plugin name="cordova-sqlite-ext" spec="^2.1.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <engine name="android" spec="^7.0.0" />
 </widget>

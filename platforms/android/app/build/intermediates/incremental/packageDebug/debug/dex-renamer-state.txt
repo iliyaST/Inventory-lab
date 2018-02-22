@@ -1,4 +1,19 @@
-#Sat Jan 27 16:19:32 EET 2018
-base.0=C\:\\Users\\PC\\Desktop\\SladkaPrikazkaProject\\sladka-prikazka.com\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Thu Feb 22 14:41:45 EET 2018
+path.1=classes.dex
+path.0=classes.dex
+renamed.5=classes6.dex
+renamed.4=classes5.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
-file.0=C\:\\Users\\PC\\Desktop\\SladkaPrikazkaProject\\sladka-prikazka.com\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
+base.5=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\53
+base.4=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\50
+base.3=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\55
+base.2=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\52
+base.1=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\54
+base.0=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\51
+path.5=classes.dex
+path.4=classes.dex
+path.3=classes.dex
+path.2=classes.dex

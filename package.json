@@ -4,6 +4,8 @@
   "description": "",
   "dependencies": {
     "cordova-android": "^7.0.0",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-sqlite-ext": "^2.1.0",
     "onsenui": "~2.8.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
@@ -12,6 +14,10 @@
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-sqlite-ext": {},
+      "cordova-plugin-whitelist": {}
+    }
   }
 }
