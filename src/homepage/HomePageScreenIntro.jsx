@@ -3,10 +3,11 @@ import React from "react";
 
 import NavigationComponentContainer from "../common/NavigationComponentContainer";
 import CategoryWrapComponent from "./CateogryWrapComponent";
-import CreateCategoryComponent from "./CreateCategoryComponent";
+import CreateComponent from "./CreateComponent";
 import Footer from "../common/Footer";
+import ProductWrapComponent from "./ProductWrapComponent";
 
-import EditCategoryOverlay from "./EditCategoryOverlay";
+import EditOverlay from "./EditOverlay";
 
 import "../styles/HomePageScreen.css";
 
@@ -20,7 +21,8 @@ type State = {
   selectingEdit: boolean,
   selectingDelete: boolean,
   id: number,
-  productActive: boolean
+  productActive: boolean,
+  categoryClicked: number
 };
 
 class HomePageScreen extends React.Component<Props, State> {
@@ -35,7 +37,8 @@ class HomePageScreen extends React.Component<Props, State> {
       selectingEdit: false,
       selectingDelete: false,
       id: 0,
-      productActive: false
+      productActive: false,
+      categoryClicked: 0
     };
   }
 
@@ -44,14 +47,26 @@ class HomePageScreen extends React.Component<Props, State> {
   }
 
   onEditCategory() {
-    let categories = localStorage.getItem("categories");
+    if (!this.state.selectingEdit) {
+      let categories = localStorage.getItem("categories");
 
-    if (categories === null || categories.length === 0) {
-      alert("Моля първо създайте категория!");
+      if (categories === null || categories.length === 0) {
+        alert("Моля първо създайте категория!");
+      } else {
+        alert("Моля изберете категория, която да редактирате!");
+        const categoryWrapOpacity = { opacity: "0.5" };
+        this.setState({
+          categoryWrapOpacity,
+          selectingEdit: true,
+          selectingDelete: false
+        });
+      }
     } else {
-      alert("Моля изберете категория, която да редактирате!");
-      const categoryWrapOpacity = { opacity: "0.5" };
-      this.setState({ categoryWrapOpacity, selectingEdit: true });
+      const categoryWrapOpacity = { opacity: "1" };
+      this.setState({
+        selectingEdit: false,
+        categoryWrapOpacity
+      });
     }
   }
 
@@ -62,7 +77,7 @@ class HomePageScreen extends React.Component<Props, State> {
       categories = JSON.parse(categories);
       categories = categories.map(category => {
         if (category.id === this.state.id) {
-          const newCategory = {};
+          const newCategory = Object.assign({}, category);
           newCategory.id = this.state.id;
           if (name !== "" && name !== category.name) {
             newCategory.name = name;
@@ -90,28 +105,50 @@ class HomePageScreen extends React.Component<Props, State> {
   }
 
   onDeleteCategory() {
-    let categories = localStorage.getItem("categories");
+    if (!this.state.selectingDelete) {
+      let categories = localStorage.getItem("categories");
 
-    if (categories === null || categories.length === 0) {
-      alert("Моля първо създайте категория!");
+      if (categories === null || categories.length === 0) {
+        alert("Моля първо създайте категория!");
+      } else {
+        alert("Моля изберете категория, която да изтриете!");
+        const categoryWrapOpacity = { opacity: "0.5" };
+        this.setState({
+          categoryWrapOpacity,
+          selectingDelete: true,
+          selectingEdit: false
+        });
+      }
     } else {
-      alert("Моля изберете категория, която да изтриете!");
-      const categoryWrapOpacity = { opacity: "0.5" };
-      this.setState({ categoryWrapOpacity, selectingDelete: true });
+      const categoryWrapOpacity = { opacity: "1" };
+      this.setState({ selectingDelete: false, categoryWrapOpacity });
     }
   }
 
   createCategory(name: string, url: string) {
+    const categoryWrapOpacity = { opacity: "1" };
+    this.setState({
+      selectingEdit: false,
+      selectingDelete: false,
+      categoryWrapOpacity
+    });
+
     let categories =
       localStorage.getItem("categories") === null
         ? []
         : JSON.parse(localStorage.getItem("categories"));
 
-    let newCategory = { id: categories.length + 1, name, url, products: [] };
+    let newCategory = {
+      id: new Date().valueOf(),
+      name,
+      url,
+      products: []
+    };
 
-    categories.push(newCategory);
-
-    localStorage.setItem("categories", JSON.stringify(categories));
+    if (newCategory.name !== "") {
+      categories.push(newCategory);
+      localStorage.setItem("categories", JSON.stringify(categories));
+    }
 
     this.setState({ creatOverlayCategoryActive: false });
   }
@@ -146,37 +183,24 @@ class HomePageScreen extends React.Component<Props, State> {
         this.setState({ editActive: false, categoryWrapOpacity });
       });
     } else {
-      this.setState({ productActive: true });
+      this.setState({ productActive: true, categoryClicked: id });
     }
-  }
-
-  onCreateProduct() {
-    console.log("create product");
-  }
-
-  onEditProduct() {
-    console.log("edit product");
-  }
-
-  onDeleteProduct() {
-    console.log("delete product");
   }
 
   render() {
     return (
       <div className="home-page-wrapper">
         {this.state.editActive && (
-          <EditCategoryOverlay
-            onEdit={this.onCategoryEditComplete.bind(this)}
-          />
+          <EditOverlay onEdit={this.onCategoryEditComplete.bind(this)} />
         )}
         <NavigationComponentContainer
           returnToHomeHandler={this.returnToHome.bind(this)}
         />
         {this.state.creatOverlayCategoryActive &&
           !this.state.creatOverlayProductActive && (
-            <CreateCategoryComponent
-              createCategoryHandler={this.createCategory.bind(this)}
+            <CreateComponent
+              createHandler={this.createCategory.bind(this)}
+              name={"категория"}
             />
           )}
         {!this.state.creatOverlayCategoryActive &&
@@ -190,7 +214,7 @@ class HomePageScreen extends React.Component<Props, State> {
         {!this.state.creatOverlayCategoryActive &&
           !this.state.creatOverlayProductActive &&
           this.state.productActive && (
-            <div className="products-wrap">Productsssss</div>
+            <ProductWrapComponent categoryId={this.state.categoryClicked} />
           )}
         {!this.state.creatOverlayCategoryActive &&
           !this.state.creatOverlayProductActive &&
@@ -202,18 +226,6 @@ class HomePageScreen extends React.Component<Props, State> {
               onCreate={this.onCreateCategory.bind(this)}
               onEdit={this.onEditCategory.bind(this)}
               onDelete={this.onDeleteCategory.bind(this)}
-            />
-          )}
-        {!this.state.creatOverlayCategoryActive &&
-          !this.state.creatOverlayProductActive &&
-          this.state.productActive && (
-            <Footer
-              create="Нов продукт"
-              edit="Редактиране продукт"
-              delete="Изтриване продукт"
-              onCreate={this.onCreateProduct.bind(this)}
-              onEdit={this.onEditProduct.bind(this)}
-              onDelete={this.onDeleteProduct.bind(this)}
             />
           )}
       </div>

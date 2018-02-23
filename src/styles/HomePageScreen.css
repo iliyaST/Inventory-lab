@@ -50,10 +50,13 @@ body {
   width: 25vw;
   height: 20vw;
   border: 1vw solid black;
-  margin-top: 1vw;
+  margin-top: 9vw;
   position: relative;
   text-align: center;
   margin-left: 4%;
+  background-image: url("../assets/cake-logo.jpg");
+  background-position: center center;
+  background-size: cover;
 }
 
 .category-item-photo {
@@ -66,10 +69,13 @@ body {
 .category-item-name {
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 4vw;
+  font-size: 3vw;
   position: absolute;
-  left: 10%;
-  top: 20%;
+  left: 0;
+  top: 110%;
+  width: 25vw;
+  overflow-wrap: break-word;
+  text-align: center;
 }
 
 .footer-container {
@@ -215,9 +221,13 @@ body {
   left: 15%;
   z-index: 10000000;
   border-radius: 5vw 5vw 5vw 5vw;
-  height: 50vw;
+  height: 71vw;
   width: 70vw;
   padding: 2vw;
+}
+
+.edit-category-container label {
+  text-align: center;
 }
 
 .edit-name {
@@ -271,4 +281,50 @@ body {
   font-size: 4.5vw;
   padding: 2vw 0vw 2vw 0vw;
   margin-left: 17%;
+}
+
+.products-wrap {
+  margin-top: 8vw;
+  width: 100%;
+}
+
+.category-item-wrap {
+  display: inline-block;
+  height: 17vw;
+  width: 22vw;
+  border: 1vw solid black;
+  background-color: lightblue;
+  margin: 11% 4%;
+  position: relative;
+  background-image: url("../assets/cake-logo.jpg");
+  background-position: center center;
+  background-size: cover;
+}
+
+.product-name {
+  position: absolute;
+  z-index: 100;
+  width: 22vw;
+  overflow-wrap: break-word;
+  font-size: 3vw;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  text-align: center;
+  top: 110%;
+}
+
+.product-url {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.product-count {
+  position: absolute;
+  bottom: 110%;
+  text-align: center;
+  left: 37%;
 }

@@ -7,7 +7,8 @@ type Props = {
   name: string,
   photoURL: string,
   id: number,
-  categoryOnClick: (id: number) => void
+  categoryOnClick: (id: number) => void,
+  categoryStyle: Object
 };
 
 type State = {};
@@ -20,6 +21,7 @@ class CategoryComponent extends React.Component<Props, State> {
   render() {
     return (
       <div
+        style={this.props.categoryStyle}
         onClick={this.categoryOnClick.bind(this)}
         className="category-item-container"
       >
