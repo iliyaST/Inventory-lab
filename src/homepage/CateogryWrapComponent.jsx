@@ -28,14 +28,14 @@ class CategoryWrapComponent extends React.Component<Props, State> {
           if (product.count === 0) {
             result = Object.assign(
               {},
-              { border: "1vw solid red", opacity: "0.5" }
+              { border: "1vw solid red", opacity: "0.4" }
             );
           }
 
-          if (product.count > 0 && product.count < 3) {
+          if (product.count > 0 && product.count <= 3) {
             result = Object.assign(
               {},
-              { border: "1vw solid yellow", opacity: "0.5" }
+              { border: "1vw solid yellow", opacity: "0.8" }
             );
           }
 

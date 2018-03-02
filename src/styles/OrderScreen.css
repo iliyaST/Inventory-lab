@@ -1,0 +1,49 @@
+.footer-order-navigation {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  width: 100%;
+}
+
+.footer-order-navigation > div {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.order {
+  display: flex;
+  width: 100%;
+}
+
+.order > div {
+  flex-grow: 1;
+}
+
+.order-count-result {
+  margin-top: 13%;
+}
+
+.content {
+  padding-bottom: 10%;
+}
+
+.nav-order-result-screen {
+  display: flex;
+  background-color: black;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 4vw;
+  font-weight: bolder;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+  padding: 2vw;
+}
+
+.nav-order-result-screen > div {
+  flex-grow: 1;
+}

@@ -11,7 +11,9 @@ import EditOverlay from "./EditOverlay";
 
 import "../styles/HomePageScreen.css";
 
-type Props = {};
+type Props = {
+  orderHandler: () => void
+};
 
 type State = {
   creatOverlayCategoryActive: boolean,
@@ -195,6 +197,8 @@ class HomePageScreen extends React.Component<Props, State> {
         )}
         <NavigationComponentContainer
           returnToHomeHandler={this.returnToHome.bind(this)}
+          orderHandler={this.props.orderHandler}
+          orderActive={false}
         />
         {this.state.creatOverlayCategoryActive &&
           !this.state.creatOverlayProductActive && (

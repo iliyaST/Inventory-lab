@@ -52,7 +52,12 @@ class ProductWrapComponent extends React.Component<Props, State> {
     this.setState({ createProductActive: true });
   }
 
-  createProductHandler(name: string, url: string) {
+  createProductHandler(
+    name: string,
+    url: string,
+    count: number,
+    price: number
+  ) {
     this.setState({ isEditSelecting: false, isDeleteSelecting: false });
 
     if (name !== "") {
@@ -64,7 +69,8 @@ class ProductWrapComponent extends React.Component<Props, State> {
             id: new Date().valueOf(),
             name,
             url,
-            count: 0
+            count,
+            price
           });
         }
       });
@@ -120,7 +126,7 @@ class ProductWrapComponent extends React.Component<Props, State> {
     }
   }
 
-  onEditComplelete(name: string, url: string, count?: number) {
+  onEditComplelete(name: string, url: string, count?: number, price?: number) {
     let categories = this.state.categories.slice();
     categories.forEach(category => {
       if (category.id === this.props.categoryId) {
@@ -136,6 +142,10 @@ class ProductWrapComponent extends React.Component<Props, State> {
 
             if (count && count !== newProduct.count) {
               newProduct.count = count;
+            }
+
+            if (price && price !== newProduct.price) {
+              newProduct.price = price;
             }
 
             return newProduct;
@@ -184,6 +194,7 @@ class ProductWrapComponent extends React.Component<Props, State> {
                     url={product.url}
                     id={product.id}
                     count={product.count}
+                    price={product.price}
                     onProductClick={this.onProductClick.bind(this)}
                   />
                 );
@@ -195,6 +206,8 @@ class ProductWrapComponent extends React.Component<Props, State> {
             <CreateComponent
               name={"продукт"}
               createHandler={this.createProductHandler.bind(this)}
+              count={true}
+              price={true}
             />
           )}
         {!this.state.editOverlayActive &&

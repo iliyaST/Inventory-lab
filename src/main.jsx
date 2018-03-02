@@ -10,35 +10,23 @@ const rootElement = document.getElementById("app");
 let db = null;
 
 document.addEventListener("deviceready", function() {
-  console.log("hi");
-  db = window.sqlitePlugin.openDatabase({
-    name: "demo.db",
-    location: "default"
-  });
-
-  db.sqlBatch(
-    [
-      "CREATE TABLE IF NOT EXISTS DemoTable (name, score)",
-      ["INSERT INTO DemoTable VALUES (?,?)", ["Alice", 101]],
-      ["INSERT INTO DemoTable VALUES (?,?)", ["Betty", 202]],
-      ["INSERT INTO DemoTable VALUES (?,?)", ["Cveti", 202]]
-    ],
-    function() {
-      console.log("Populated database OK");
+  db = window.sqlitePlugin.openDatabase(
+    { name: "inventoryProject.db", location: "default" },
+    function(db) {
+      db.transaction(
+        function(tx) {
+          tx.executeSql("CREATE TABLE ordersTable (orderDate, orderItem)");
+        },
+        function(error) {
+          console.log("transaction error: " + error.message);
+        },
+        function() {
+          console.log("transaction ok");
+        }
+      );
     },
     function(error) {
-      console.log("SQL batch ERROR: " + error.message);
-    }
-  );
-
-  db.executeSql(
-    "SELECT * FROM DemoTable",
-    [],
-    function(rs) {
-      console.log(rs.rows);
-    },
-    function(error) {
-      console.log("SELECT SQL statement ERROR: " + error.message);
+      console.log("Open database ERROR: " + JSON.stringify(error));
     }
   );
 });

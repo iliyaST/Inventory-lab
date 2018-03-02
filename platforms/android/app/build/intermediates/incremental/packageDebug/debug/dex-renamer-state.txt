@@ -1,4 +1,4 @@
-#Fri Feb 23 17:17:08 EET 2018
+#Thu Mar 01 16:14:17 EET 2018
 base.0=C\:\\PROJECTS\\sladka-prikazka\\Inventory-lab\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\57
 path.0=classes.dex
 renamed.0=classes.dex

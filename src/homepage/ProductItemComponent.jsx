@@ -6,6 +6,7 @@ type Props = {
   name: string,
   url: string,
   count: number,
+  price: number,
   onProductClick: (id: number) => void
 };
 
@@ -20,7 +21,11 @@ class ProductItemComponent extends React.Component<Props, State> {
         key={this.props.id}
         className="category-item-wrap"
       >
-        <label className="product-count">{this.props.count}</label>
+        <label className="product-count">
+          {this.props.count && this.props.price
+            ? `${this.props.count} x ${this.props.price}лв`
+            : ""}
+        </label>
         <label className="product-name">{this.props.name}</label>
         <img className="product-url" src={this.props.url} alt="product" />
       </div>

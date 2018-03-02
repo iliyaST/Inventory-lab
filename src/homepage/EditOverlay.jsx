@@ -2,14 +2,15 @@
 import React from "react";
 
 type Props = {
-  onEdit: (name: string, url: string, count?: number) => void,
+  onEdit: (name: string, url: string, count?: number, price?: number) => void,
   editCount?: boolean
 };
 
 type State = {
   name: string,
   url: string,
-  count: number
+  count: number,
+  price: number
 };
 
 class EditOverlay extends React.Component<Props, State> {
@@ -19,7 +20,8 @@ class EditOverlay extends React.Component<Props, State> {
     this.state = {
       name: "",
       url: "",
-      count: 0
+      count: 0,
+      price: 0
     };
   }
 
@@ -35,8 +37,17 @@ class EditOverlay extends React.Component<Props, State> {
     this.setState({ count: target });
   }
 
+  handleChangePrice(target: string) {
+    this.setState({ price: target });
+  }
+
   onEdit() {
-    this.props.onEdit(this.state.name, this.state.url, this.state.count);
+    this.props.onEdit(
+      this.state.name,
+      this.state.url,
+      this.state.count,
+      this.state.price
+    );
   }
 
   render() {
@@ -64,6 +75,17 @@ class EditOverlay extends React.Component<Props, State> {
             }
             value={this.state.count}
             className="edit-count"
+          />
+        )}
+
+        {this.props.editCount && <label>Новa цена от дадения продукт </label>}
+        {this.props.editCount && (
+          <input
+            onChange={(event: any) =>
+              this.handleChangePrice(event.target.value)
+            }
+            value={this.state.price}
+            className="price-count"
           />
         )}
 
